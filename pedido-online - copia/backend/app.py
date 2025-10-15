@@ -17,6 +17,7 @@ from backend.routes.admin_reports import admin_reports_bp
 
 #PruebaDeCambio
 
+
 def create_app():
     load_dotenv()
 
