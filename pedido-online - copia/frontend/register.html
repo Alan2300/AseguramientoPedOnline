@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registro de Cliente - Pedido Online</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}
+    .registro-container{background:#fff;padding:30px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,.15);width:100%;max-width:480px}
+    h2{text-align:center;margin:0 0 16px}
+    input{width:100%;padding:10px;margin:6px 0;border:1px solid #d1d5db;border-radius:6px}
+    button{width:100%;padding:12px;background:#22c55e;border:0;color:#fff;border-radius:8px;font-weight:700;cursor:pointer}
+    button:hover{filter:brightness(1.05)}
+    .login-link{text-align:center;margin-top:14px}
+    .error-message{color:#dc2626;font-size:.95em;text-align:center;min-height:1.25em;margin-bottom:8px}
+    .field-error{color:#dc2626;font-size:.85em;display:block;min-height:1.1em}
+    .req{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px;margin-top:6px}
+    .req-title{font-size:.9em;margin:0 0 6px;color:#374151}
+    .req-item{display:flex;align-items:center;gap:8px;font-size:.9em;color:#6b7280}
+    .req-item.ok{color:#16a34a}
+    .req-dot{width:8px;height:8px;border-radius:50%;background:#9ca3af}
+    .req-item.ok .req-dot{background:#16a34a}
+    .hint{font-size:.8em;color:#6b7280;min-height:1em}
+  </style>
+</head>
+<body>
+  <div class="registro-container">
+    <h2>Registro de Cliente</h2>
+    <div id="errorBanner" class="error-message"></div>
+
+    <label>Nombre</label>
+    <input type="text" id="nombre_usuario" placeholder="Nombre completo" autocomplete="name">
+    <small id="errNombre" class="field-error"></small>
+
+    <label>Correo electrónico</label>
+    <input type="email" id="correo" placeholder="usuario@ejemplo.com" autocomplete="email">
+    <small class="hint">Formato: usuario@dominio.com</small>
+    <small id="errEmail" class="field-error"></small>
+
+    <label>Contraseña</label>
+    <input type="password" id="contrasena" placeholder="••••••••" autocomplete="new-password">
+    <div class="req">
+      <p class="req-title">La contraseña debe cumplir:</p>
+      <div id="rLen"   class="req-item"><span class="req-dot"></span>Mínimo 8 caracteres</div>
+      <div id="rLow"   class="req-item"><span class="req-dot"></span>Al menos 1 minúscula</div>
+      <div id="rUp"    class="req-item"><span class="req-dot"></span>Al menos 1 mayúscula</div>
+      <div id="rNum"   class="req-item"><span class="req-dot"></span>Al menos 1 número</div>
+      <div id="rSym"   class="req-item"><span class="req-dot"></span>Al menos 1 símbolo (!@#$%…)</div>
+    </div>
+    <small id="errPass" class="field-error"></small>
+
+    <button id="btnRegister" onclick="registrar()">Registrarse</button>
+    <div class="login-link">
+      <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+    </div>
+  </div>
+  <script src="js/register.js"></script>
+</body>
+</html>

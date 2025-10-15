@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Pedidos</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f4; }
+    header { background-color: #007bff; color: white; padding: 15px; text-align: center; }
+    .container { display: flex; flex-wrap: wrap; max-width: 1200px; margin: 20px auto; gap: 20px; padding: 0 20px; }
+    .productos { flex: 2; }
+    .resumen { flex: 1; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1); height: fit-content; }
+    .card { background-color: white; display: flex; justify-content: space-between; align-items: center; padding: 15px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    .card-info { flex: 1; }
+    .card-info h3 { margin: 0 0 5px; font-size: 1.1em; }
+    .card-info p { margin: 0; color: #555; font-size: 0.9em; }
+    .card input { width: 60px; padding: 5px; margin-left: 10px; }
+    .card button { background-color: #dc3545; border: none; color: white; padding: 6px 12px; border-radius: 5px; cursor: pointer; }
+    .card button:hover { background-color: #c82333; }
+    .resumen h2 { margin-top: 0; }
+    .resumen p { font-size: 1.1em; margin: 10px 0; }
+    .resumen button { width: 100%; padding: 10px; background-color: #28a745; border: none; color: white; font-size: 1em; border-radius: 5px; cursor: pointer; }
+    .resumen button:hover { background-color: #218838; }
+    .cerrar { display: block; margin: 20px auto; width: fit-content; background: #dc3545; color: #fff; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+  </style>
+  <link rel="stylesheet" href="/frontend/css/homeHeader.css">
+</head>
+<body>
+  <header>
+    <h1>Carrito de Pedidos</h1>
+  </header>
+
+  <div id="app-header"></div>
+
+  <div class="container">
+    <div class="productos" id="carritoContainer"></div>
+    <div class="resumen">
+      <h2>Resumen del Pedido</h2>
+      <p>Total: Q<span id="total">0.00</span></p>
+      <button id="btnConfirmar">Confirmar Pedido</button>
+    </div>
+  </div>
+
+  <div>
+    <button class="cerrar" id="btnLogout">Cerrar Sesión</button>
+  </div>
+
+  <script src="/frontend/js/session.js"></script>
+  <script src="/frontend/js/homeHeader.js"></script>
+  <script src="/frontend/js/login.js"></script>
+  <script src="/frontend/js/checkout.js"></script>
+</body>
+</html>

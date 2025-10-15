@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel de Cliente - Pedido Online</title>
+  <style>
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #f5f6fa; }
+    header { background-color: #007bff; color: white; padding: 20px; text-align: center; }
+    .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.2s; text-align: center; cursor: pointer; }
+    .card:hover { transform: translateY(-5px); }
+    .card h3 { margin-top: 10px; font-size: 1.2em; }
+    .card p { font-size: 0.9em; color: #666; }
+    .icon { font-size: 40px; color: #007bff; }
+    .cerrar { display: inline-block; margin-top: 10px; padding: 8px 16px; background-color: #dc3545; color: white; border-radius: 5px; text-decoration: none; cursor: pointer; }
+    .cerrar:hover { background-color: #c82333; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Panel de Cliente</h1>
+    <p id="bienvenida">Bienvenido</p>
+    <a class="cerrar" onclick="cerrarSesion()">Cerrar Sesión</a>
+  </header>
+
+  <div class="container">
+    <div class="grid">
+      <div class="card" onclick="window.location.href='productos_cliente.html'">
+        <div class="icon">🛍️</div>
+        <h3>Ver Productos</h3>
+        <p>Explora artículos disponibles para realizar un pedido.</p>
+      </div>
+
+      <div class="card" onclick="window.location.href='carrito.html'">
+        <div class="icon">🛒</div>
+        <h3>Carrito</h3>
+        <p>Revisa y confirma tu pedido.</p>
+      </div>
+
+      <div class="card" onclick="window.location.href='seguimiento_pedidos.html'">
+        <div class="icon">🚚</div>
+        <h3>Seguimiento</h3>
+        <p>Observa el estado actual de tus pedidos.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    if (!usuario || !usuario.id_usuario || !usuario.nombre) {
+      alert("Debes iniciar sesión primero.");
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("bienvenida").textContent = `Bienvenido, ${usuario.nombre}`;
+    }
+
+    function cerrarSesion() {
+      localStorage.removeItem("usuario");
+      window.location.href = "login.html";
+    }
+  </script>
+
+</body>
+
+</html>

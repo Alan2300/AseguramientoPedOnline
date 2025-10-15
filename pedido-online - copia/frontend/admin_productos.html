@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestión de Productos - Administrador</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f6fa;
+    }
+
+    header {
+      background-color: #343a40;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .acciones {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .acciones h2 {
+      margin: 0;
+    }
+
+    .acciones input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .acciones button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .acciones button:hover {
+      background-color: #218838;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    img {
+      max-width: 80px;
+      border-radius: 5px;
+    }
+
+    #formAgregarProducto {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: none;
+    }
+
+    #formAgregarProducto input, #formAgregarProducto textarea {
+      display: block;
+      margin-bottom: 10px;
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #formAgregarProducto button {
+      margin-right: 10px;
+    }
+
+    .editar {
+      background-color: #7c7c7c;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .editar:hover {
+      background-color: #7c7c7c;
+    }
+
+    .eliminar {
+      background-color: #7c7c7c;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .eliminar:hover {
+      background-color: #7e7e7e;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Gestión de Productos</h1>
+    <p>Administrador</p>
+  </header>
+<link rel="stylesheet" href="/frontend/css/homeHeader.css">
+<script src="/frontend/js/session.js"></script>
+<div id="app-header"></div>
+<script src="/frontend/js/homeHeader.js"></script>
+
+
+  <div class="container">
+    <div class="acciones">
+      <h2>Lista de Productos</h2>
+      <input type="text" id="buscador" placeholder="Buscar productos...">
+      <button onclick="mostrarFormularioAgregar()">+ Agregar Producto</button>
+    </div>
+
+    <form id="formAgregarProducto">
+      <h3>Agregar / Editar Producto</h3>
+      <input type="hidden" id="id_producto" name="id_producto">
+      <input type="text" id="nombre" name="nombre" placeholder="Nombre del producto" required>
+      <textarea id="descripcion" name="descripcion" placeholder="Descripción" required></textarea>
+      <input type="number" id="precio_unitario" name="precio_unitario" placeholder="Precio unitario" step="0.01" required>
+      <input type="number" id="cantidad" name="cantidad" placeholder="Cantidad inicial" min="0" required>
+      <input type="file" id="imagen" name="imagen" accept="image/*">
+      <button type="submit">Guardar Producto</button>
+      <button type="button" onclick="ocultarFormulario()">Cancelar</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio (Q)</th>
+          <th>Cantidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tablaProductos">
+      </tbody>
+    </table>
+  </div>
+
+  <script src="js/productos.js"></script>
+</body>
+
+</html>

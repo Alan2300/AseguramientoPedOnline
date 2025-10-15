@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center; }
+        input { display: block; width: 100%; margin: 10px 0; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+        button { padding: 10px 20px; border: none; border-radius: 5px; background: #007bff; color: white; cursor: pointer; width: 100%; }
+        button:hover { background: #0056b3; }
+        .error { color: red; font-size: 0.9em; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h1>Iniciar Sesión</h1>
+    <input type="email" id="correo" placeholder="Correo electrónico">
+    <input type="password" id="contrasena" placeholder="Contraseña">
+    <button onclick="login()">Ingresar</button>
+    <p>¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
+    <a href="/frontend/forgot_password.html" style="display:block;margin-top:12px;">¿Olvidaste tu contraseña?</a>
+    <p id="error" class="error"></p>
+</div>
+
+<script src="js/login.js"></script>
+
+</body>
+</html>

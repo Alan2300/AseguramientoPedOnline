@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panel de Reportes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/frontend/css/homeHeader.css" />
+  <style>
+    :root { --brand:#0d6efd }
+    body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; background:#f5f7fb; color:#111827 }
+    header.hero { background:#0b3b69; color:#fff; padding:42px 16px; text-align:center }
+    header.hero h1{ margin:0; font-size:32px; font-weight:800 }
+    .wrap { max-width:1200px; margin:24px auto; padding:0 16px }
+    .row { display:grid; grid-template-columns:1fr 1fr; gap:18px }
+    .card{ background:#fff; border-radius:14px; box-shadow:0 12px 32px rgba(0,0,0,.08); padding:18px }
+    .card h3{ margin:0 0 12px 0; font-size:18px }
+    .field{ display:grid; gap:6px; margin-bottom:10px }
+    .field input,.field select{ border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px; background:#fff }
+    .toolbar{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:18px }
+    .btn{ border:0; border-radius:10px; padding:12px 16px; font-weight:800; cursor:pointer; background:var(--brand); color:#fff }
+    .btn.back{ background:#0f172a }
+    .topbar{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px }
+    .muted{ color:#6b7280 }
+  </style>
+</head>
+<body>
+  <script src="/frontend/js/session.js"></script>
+  <div id="app-header"></div>
+
+  <header class="hero">
+    <h1>Panel de Reportes</h1>
+  </header>
+
+  <div class="wrap">
+    <div class="topbar">
+      <button class="btn back" id="btnHome">← Inicio</button>
+      <button class="btn" id="btnLogout" style="background:#ef4444">Cerrar Sesión</button>
+    </div>
+
+    <h2 style="text-align:center;margin:4px 0 18px 0">Filtros de Reportes</h2>
+
+    <div class="row">
+      <div class="card">
+        <h3>Pedidos</h3>
+        <div class="field">
+          <label>Desde:</label>
+          <input type="date" id="pedFrom" />
+        </div>
+        <div class="field">
+          <label>Hasta:</label>
+          <input type="date" id="pedTo" />
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Productos</h3>
+        <div class="field">
+          <label>Filtro:</label>
+          <select id="prodFilter">
+            <option value="top">Más solicitados</option>
+            <option value="low">Menos solicitados</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Pedidos por Estado</h3>
+        <div class="field">
+          <label>Estado:</label>
+          <select id="pedStatus">
+            <option>Pendiente</option>
+            <option>En proceso</option>
+            <option>Completado</option>
+            <option>Cancelado</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Cliente</h3>
+        <div class="field">
+          <label>Filtrar por cliente:</label>
+          <input type="text" id="clientQ" placeholder="Nombre o correo" />
+        </div>
+        <div class="muted">Este filtro se aplica al reporte de <b>Pedidos</b>.</div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <button class="btn" id="btnRepOrders">Descargar Reporte de Pedidos</button>
+      <button class="btn" id="btnRepProducts">Descargar Reporte de Productos</button>
+      <button class="btn" id="btnRepByStatus">Descargar Reporte por Estado</button>
+    </div>
+  </div>
+
+  <script src="/frontend/js/admin_reportes.js"></script>
+</body>
+</html>

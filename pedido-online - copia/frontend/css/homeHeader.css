@@ -1,0 +1,5 @@
+.app-header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #e5e7eb}
+.app-header__wrap{max-width:980px;margin:0 auto;padding:10px;display:flex;align-items:center;gap:12px}
+.app-header__spacer{flex:1}
+.home-btn{appearance:none;border:0;border-radius:8px;padding:9px 14px;background:#111827;color:#fff;cursor:pointer;font-weight:600}
+.home-btn:hover{filter:brightness(1.05)}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Historial de Pedidos</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f5f6fa;
+    }
+
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .estado {
+      font-weight: bold;
+    }
+
+    .Pendiente { color: #ffc107; }
+    .En\ proceso { color: #17a2b8; }
+    .Completado { color: #28a745; }
+    .Cancelado { color: #dc3545; }
+
+    .cerrar {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #dc3545;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .cerrar:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Historial de Pedidos</h1>
+    <p id="bienvenida">Bienvenido</p>
+    <a class="cerrar" onclick="cerrarSesion()">Cerrar Sesión</a>
+  </header>
+<link rel="stylesheet" href="/frontend/css/homeHeader.css">
+<script src="/frontend/js/session.js"></script>
+<div id="app-header"></div>
+<script src="/frontend/js/homeHeader.js"></script>
+
+
+  <div class="container">
+    <h2>Mis Pedidos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Fecha</th>
+          <th>Productos</th>
+          <th>Estado</th>
+          <th>Total (Q)</th>
+        </tr>
+      </thead>
+      <tbody id="tablaHistorial">
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    if (!usuario || !usuario.id_usuario) {
+      alert("Debes iniciar sesión primero.");
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("bienvenida").textContent = `Bienvenido, ${usuario.nombre}`;
+    }
+
+    function cerrarSesion() {
+      localStorage.removeItem("usuario");
+      window.location.href = "login.html";
+    }
+
+    async function cargarHistorial() {
+      const tabla = document.getElementById("tablaHistorial");
+
+      try {
+        const response = await fetch(`http://127.0.0.1:5000/api/pedidos/historial/${usuario.id_usuario}`);
+        const historial = await response.json();
+
+        tabla.innerHTML = "";
+
+        historial.forEach(pedido => {
+          const total_pedido = parseFloat(pedido.total_pedido) || 0;
+
+          const tr = document.createElement("tr");
+
+          tr.innerHTML = `
+            <td>${pedido.id_pedido}</td>
+            <td>${new Date(pedido.fecha_pedido).toLocaleDateString()}</td>
+            <td>${pedido.productos}</td>
+            <td class="estado ${pedido.estado.replace(' ', '\\ ')}">${pedido.estado}</td>
+            <td>Q${total_pedido.toFixed(2)}</td>
+          `;
+
+          tabla.appendChild(tr);
+        });
+
+      } catch (error) {
+        console.error("Error al cargar historial:", error);
+        tabla.innerHTML = `<tr><td colspan="5">No se pudo cargar el historial.</td></tr>`;
+      }
+    }
+
+    cargarHistorial();
+  </script>
+
+</body>
+
+</html>
