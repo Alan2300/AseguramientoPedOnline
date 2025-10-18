@@ -27,6 +27,8 @@ def register_user():
     email = (data.get("email") or "").strip().lower()
     password = (data.get("password") or "").strip()
 
+    id_rol = 2
+
     errores = {}
     if not nombre or len(nombre) < 2:
         errores["nombre"] = "Nombre requerido (mínimo 2 caracteres)."
@@ -40,7 +42,7 @@ def register_user():
     if find_user_by_email(email):
         return jsonify({"mensaje": "El correo ya está registrado."}), 409
 
-    ok = create_user(nombre, email, password)
+    ok = create_user(nombre, email, password, id_rol)
     if not ok:
         return jsonify({"mensaje": "Error al registrar usuario."}), 500
 
